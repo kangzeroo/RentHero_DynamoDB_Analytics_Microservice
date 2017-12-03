@@ -14,5 +14,5 @@ module.exports = function(app){
 	// routes
 	app.get('/test', json_encoding, Test.test)
 
-	app.get('/building_stats', [json_encoding, originCheck], Analytics.building_stats)
+	app.post('/building_stats', [json_encoding, originCheck], Analytics.building_stats)
 }
