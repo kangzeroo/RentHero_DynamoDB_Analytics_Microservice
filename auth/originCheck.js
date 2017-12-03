@@ -6,9 +6,10 @@ exports.originCheck = function(req, res, next){
    if (origin.indexOf('https://rentburrow.com') > -1) {
      next()
    } else {
-     res.status(500).send({
-       message: 'Incorrect request origin. Not https://rentburrow.com'
-     })
+     next()
+     // res.status(500).send({
+     //   message: 'Incorrect request origin. Not https://rentburrow.com'
+     // })
    }
  } else {
    if (origin.indexOf('https://localhost:8081') > -1 || origin.indexOf('https://localhost:8080') > -1) {
