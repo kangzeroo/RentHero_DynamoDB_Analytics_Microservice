@@ -14,10 +14,9 @@ exports.originCheck = function(req, res, next){
    if (origin.indexOf('https://localhost:8081') > -1 || origin.indexOf('https://localhost:8080') > -1) {
      next()
    } else {
-     next()
-     // res.status(500).send({
-     //   message: 'Incorrect request origin. Not https://localhost:8081 or https://localhost:8080'
-     // })
+     res.status(500).send({
+       message: 'Incorrect request origin. Not https://localhost:8081 or https://localhost:8080'
+     })
    }
  }
 }
