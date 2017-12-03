@@ -37,6 +37,7 @@ if (process.env.NODE_ENV === 'production') {
   const server = https.createServer(options, app)
   // listen to the server on port
   server.listen(port, function(){
+    console.log("Running in: ", process.env.NODE_ENV)
     console.log("Server listening on https: ", port)
   })
 } else {
@@ -51,6 +52,7 @@ if (process.env.NODE_ENV === 'production') {
   const server = https.createServer(options, app)
   // listen to the server on port
   server.listen(port, function(){
+    console.log("Running in: ", process.env.NODE_ENV)
     console.log("Server listening on https: ", port)
   })
 }
