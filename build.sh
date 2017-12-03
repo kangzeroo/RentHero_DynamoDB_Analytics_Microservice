@@ -1,1 +1,1 @@
-docker build -t DynamoDB_Analytics .
+docker build -t dynamodb_analytics .
