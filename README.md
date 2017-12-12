@@ -34,8 +34,8 @@ A database index is an entire copy of the database, with different primary keys.
 # Explain to me the JSON object syntax?
 Params is the JSON object that you must provide in order to query the database. The syntax looks like this:
 
-Example Query JSON:
-{
+Example Query JSON: <br />
+`{
 	"params": {
       "TableName": "Building_Interactions_Intel",
       "KeyConditionExpression": "#BUILDING_ID = :building_id",
@@ -47,7 +47,7 @@ Example Query JSON:
         ":building_id": "350ee1fa-094b-421c-bf2e-e25e65cb0323"
       }
     }
-}
+}`
 
 - TableName --> The name of the DynamoDB table (check out /DynamoDB/schema/dynamodb_tablenames.js)
 - FilterExpression --> Optional additional filter conditions
@@ -56,8 +56,8 @@ Example Query JSON:
 - ExpressionAttributeNames --> Mapping the column name alias to actual text
 - ExpressionAttributeValues --> Mapping the alias to actual text
 
-Example Scan JSON:
-{
+Example Scan JSON: <br />
+`{
 	"params": {
       "TableName": "Building_Interactions_Intel",
       "FilterExpression": "#ACTION = :action1 AND #DATE > :date",
@@ -70,7 +70,7 @@ Example Scan JSON:
         ":date": 1512940693
       }
     }
-}
+}`
 
 - TableName --> The name of the DynamoDB table (check out /DynamoDB/schema/dynamodb_tablenames.js)
 - FilterExpression --> Whatever filter condition you want
