@@ -34,20 +34,20 @@ A database index is an entire copy of the database, with different primary keys.
 # Explain to me the JSON object syntax?
 Params is the JSON object that you must provide in order to query the database. The syntax looks like this:
 
-Example Query JSON:
-{
-	"params": {
-      "TableName": "Building_Interactions_Intel",
-      "KeyConditionExpression": "#BUILDING_ID = :building_id",
-      "IndexName": "By_Local_UserId",
-      "ExpressionAttributeNames": {
-        "#BUILDING_ID": "BUILDING_ID"
-      },
-      "ExpressionAttributeValues": {
-        ":building_id": "350ee1fa-094b-421c-bf2e-e25e65cb0323"
-      }
-    }
-}
+Example Query JSON: <br />
+{<br />
+	"params": {<br />
+      "TableName": "Building_Interactions_Intel",<br />
+      "KeyConditionExpression": "#BUILDING_ID = :building_id",<br />
+      "IndexName": "By_Local_UserId",<br />
+      "ExpressionAttributeNames": {<br />
+        "#BUILDING_ID": "BUILDING_ID"<br />
+      },<br />
+      "ExpressionAttributeValues": {<br />
+        ":building_id": "350ee1fa-094b-421c-bf2e-e25e65cb0323"<br />
+      }<br />
+    }<br />
+}<br />
 
 - TableName --> The name of the DynamoDB table (check out /DynamoDB/schema/dynamodb_tablenames.js)
 - FilterExpression --> Optional additional filter conditions
@@ -56,21 +56,21 @@ Example Query JSON:
 - ExpressionAttributeNames --> Mapping the column name alias to actual text
 - ExpressionAttributeValues --> Mapping the alias to actual text
 
-Example Scan JSON:
-{
-	"params": {
-      "TableName": "Building_Interactions_Intel",
-      "FilterExpression": "#ACTION = :action1 AND #DATE > :date",
-      "ExpressionAttributeNames": {
-        "#ACTION": "ACTION",
-        "#DATE": "DATE"
-      },
-      "ExpressionAttributeValues": {
-        ":action1": "BUILDING_PAGE_LOADED",
-        ":date": 1512940693
-      }
-    }
-}
+Example Scan JSON: <br />
+{<br />
+	"params": {<br />
+      "TableName": "Building_Interactions_Intel",<br />
+      "FilterExpression": "#ACTION = :action1 AND #DATE > :date",<br />
+      "ExpressionAttributeNames": {<br />
+        "#ACTION": "ACTION",<br />
+        "#DATE": "DATE"<br />
+      },<br />
+      "ExpressionAttributeValues": {<br />
+        ":action1": "BUILDING_PAGE_LOADED",<br />
+        ":date": 1512940693<br />
+      }<br />
+    }<br />
+}<br />
 
 - TableName --> The name of the DynamoDB table (check out /DynamoDB/schema/dynamodb_tablenames.js)
 - FilterExpression --> Whatever filter condition you want
