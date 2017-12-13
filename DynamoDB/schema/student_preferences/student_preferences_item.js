@@ -13,5 +13,25 @@ exports.reference_items = [
       'RENT_TYPE': `'sublet' || 'lease'`,
       'USER_ID': `this.props.tenant_profile.id` || 'NONE'
     }
+  },
+  {
+    // When a user changes their rent_type filter to 'sublet' or 'lease', in <FilterBar> of Tenant_Website
+    'TableName': STUDENT_PREFERENCES,
+    'Item': {
+      'ACTION': 'LEASE_FILTER_PARAMS',
+      'DATE': new Date().getTime(),
+      'PARAMS': `{'strinfified': 'object'}`,
+      'USER_ID': `this.props.tenant_profile.id` || 'NONE'
+    }
+  },
+  {
+    // When a user changes their rent_type filter to 'sublet' or 'lease', in <FilterBar> of Tenant_Website
+    'TableName': STUDENT_PREFERENCES,
+    'Item': {
+      'ACTION': 'SUBLET_FILTER_PARAMS',
+      'DATE': new Date().getTime(),
+      'PARAMS': `{'strinfified': 'object'}`,
+      'USER_ID': `this.props.tenant_profile.id` || 'NONE'
+    }
   }
 ]
