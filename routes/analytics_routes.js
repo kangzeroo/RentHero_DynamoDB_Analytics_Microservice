@@ -1,6 +1,6 @@
 const get_building_views = require('../DynamoDB/dynamodb_api').get_building_views
-const query_dynamodb = require('../DynamoDB/karsten_queryable').query_dynamodb
-const scan_dynamodb = require('../DynamoDB/karsten_queryable').scan_dynamodb
+const query_dynamodb = require('../DynamoDB/general_queryable').query_dynamodb
+const scan_dynamodb = require('../DynamoDB/general_queryable').scan_dynamodb
 
 // POST /building_stats
 exports.building_stats = function(req, res, next){
