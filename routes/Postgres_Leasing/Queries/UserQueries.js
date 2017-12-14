@@ -118,3 +118,78 @@ exports.get_specific_user_by_phone = function(req, res, next){
       res.status(500).send('Failed to get User')
   })
 }
+
+exports.get_specific_user_by_first_name = function(req, res, next){
+  const info = req.body
+  const values = [info.first_name.toLowerCase()]
+
+  const get_user = `SELECT * FROM tenant WHERE LOWER(first_name) = $1`
+
+  const return_rows = (rows) => {
+    res.json(rows)
+  }
+
+  query(get_user, values)
+  .then((data) => {
+    return stringify_rows(data)
+  })
+  .then((data) => {
+    return json_rows(data)
+  })
+  .then((data) => {
+    return return_rows(data)
+  })
+  .catch((error) => {
+      res.status(500).send('Failed to get User')
+  })
+}
+
+exports.get_specific_user_by_last_name = function(req, res, next){
+  const info = req.body
+  const values = [info.last_name.toLowerCase()]
+
+  const get_user = `SELECT * FROM tenant WHERE LOWER(last_name) = $1`
+
+  const return_rows = (rows) => {
+    res.json(rows)
+  }
+
+  query(get_user, values)
+  .then((data) => {
+    return stringify_rows(data)
+  })
+  .then((data) => {
+    return json_rows(data)
+  })
+  .then((data) => {
+    return return_rows(data)
+  })
+  .catch((error) => {
+      res.status(500).send('Failed to get User')
+  })
+}
+
+exports.get_specific_user_by_full_name = function(req, res, next){
+  const info = req.body
+  const values = [info.first_name.toLowerCase(), info.last_name.toLowerCase()]
+
+  const get_user = `SELECT * FROM tenant WHERE LOWER(first_name) = $1 AND LOWER(last_name) = $2`
+
+  const return_rows = (rows) => {
+    res.json(rows)
+  }
+
+  query(get_user, values)
+  .then((data) => {
+    return stringify_rows(data)
+  })
+  .then((data) => {
+    return json_rows(data)
+  })
+  .then((data) => {
+    return return_rows(data)
+  })
+  .catch((error) => {
+      res.status(500).send('Failed to get User')
+  })
+}
