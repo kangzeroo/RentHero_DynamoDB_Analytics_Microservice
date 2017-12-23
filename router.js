@@ -31,6 +31,7 @@ module.exports = function(app){
 	app.post('/get_user_suite_browsing_history', [json_encoding, JWT_Check, originCheck], Storyline.get_user_suite_browsing_history)
 	app.post('/get_user_preferences_history', [json_encoding, JWT_Check, originCheck], Storyline.get_user_preferences_history)
 	app.post('/get_user_images_history', [json_encoding, JWT_Check, originCheck], Storyline.get_user_images_history)
+	app.post('/get_user_amenities_history', [json_encoding, JWT_Check, originCheck], Storyline.get_user_amenities_history)
 
 	// User queries
 	app.get('/get_all_users', [json_encoding, JWT_Check, originCheck], UserQueries.get_all_users)

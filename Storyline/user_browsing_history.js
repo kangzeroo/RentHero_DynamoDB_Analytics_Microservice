@@ -5,6 +5,7 @@ const BUILDING_INTERACTIONS = require('../DynamoDB/schema/dynamodb_tablenames').
 const SUITE_INTERACTIONS = require('../DynamoDB/schema/dynamodb_tablenames').SUITE_INTERACTIONS
 const STUDENT_PREFERENCES = require('../DynamoDB/schema/dynamodb_tablenames').STUDENT_PREFERENCES
 const IMAGE_INTERACTIONS = require('../DynamoDB/schema/dynamodb_tablenames').IMAGE_INTERACTIONS
+const AMENITY_INTERACTIONS = require('../DynamoDB/schema/dynamodb_tablenames').AMENITY_INTERACTIONS
 
 
 exports.retrieve_user_building_browsing_history = function(tenant_id) {
@@ -61,6 +62,22 @@ exports.retrieve_user_preferences_history = function(tenant_id) {
 exports.retrieve_user_images_history = function(tenant_id) {
   const params = {
     "TableName": IMAGE_INTERACTIONS,
+    "KeyConditionExpression": "#USER_ID = :user_id AND #DATE > :date",
+    "ExpressionAttributeNames": {
+      "#USER_ID": "USER_ID",
+      "#DATE": "DATE"
+    },
+    "ExpressionAttributeValues": {
+      ":user_id": tenant_id,
+      ":date": unixDateSince(240)
+    }
+  }
+  return query_dynamodb(params)
+}
+
+exports.retrieve_user_amenities_history = function(tenant_id) {
+  const params = {
+    "TableName": AMENITY_INTERACTIONS,
     "KeyConditionExpression": "#USER_ID = :user_id AND #DATE > :date",
     "ExpressionAttributeNames": {
       "#USER_ID": "USER_ID",
