@@ -12,11 +12,11 @@ const dynamodb = new AWS.DynamoDB({
 const docClient = new dynaDoc.DynamoDB(dynamodb)
 
 
-exports.get_specific_chat_thread = function(sender_contact_id, receiver_contact_id) {
+exports.get_specific_chat_thread = function(sender_id, receiver_id) {
   const p = new Promise((res, rej) => {
     const promises = [
-      getMessagesFromSendersPOV(sender_contact_id, receiver_contact_id),
-      getMessagesFromReceiversPOV(sender_contact_id, receiver_contact_id)
+      getMessagesFromSendersPOV(sender_id, receiver_id),
+      getMessagesFromReceiversPOV(sender_id, receiver_id)
     ]
     Promise.all(promises).then((result) => {
       // console.log(result)
@@ -31,20 +31,20 @@ exports.get_specific_chat_thread = function(sender_contact_id, receiver_contact_
 
 
 
-const getMessagesFromSendersPOV = (sender_contact_id, receiver_contact_id) => {
+const getMessagesFromSendersPOV = (sender_id, receiver_id) => {
   const p = new Promise((res, rej) => {
     const params = {
       "TableName": COMMUNICATIONS_HISTORY,
-      "KeyConditionExpression": "#SENDER_CONTACT_ID = :sender_contact_id",
+      "KeyConditionExpression": "#SENDER_ID = :sender_id",
       "IndexName": "By_SENDER_ID",
-      "FilterExpression": "#RECEIVER_CONTACT_ID = :receiver_contact_id",
+      "FilterExpression": "#RECEIVER_ID = :receiver_id",
       "ExpressionAttributeNames": {
-        "#SENDER_CONTACT_ID": "SENDER_CONTACT_ID",
-        "#RECEIVER_CONTACT_ID": "RECEIVER_CONTACT_ID",
+        "#SENDER_ID": "SENDER_ID",
+        "#RECEIVER_ID": "RECEIVER_ID",
       },
       "ExpressionAttributeValues": {
-        ":sender_contact_id": sender_contact_id,
-        ":receiver_contact_id": receiver_contact_id,
+        ":sender_id": sender_id,
+        ":receiver_id": receiver_id,
       }
     }
     docClient.query(params, function(err, data) {
@@ -60,20 +60,20 @@ const getMessagesFromSendersPOV = (sender_contact_id, receiver_contact_id) => {
   return p
 }
 
-const getMessagesFromReceiversPOV = (sender_contact_id, receiver_contact_id) => {
+const getMessagesFromReceiversPOV = (sender_id, receiver_id) => {
   const p = new Promise((res, rej) => {
     const params = {
       "TableName": COMMUNICATIONS_HISTORY,
-      "KeyConditionExpression": "#SENDER_CONTACT_ID = :receiver_contact_id",
+      "KeyConditionExpression": "#SENDER_ID = :receiver_id",
       "IndexName": "By_SENDER_ID",
-      "FilterExpression": "#RECEIVER_CONTACT_ID = :sender_contact_id",
+      "FilterExpression": "#RECEIVER_ID = :sender_id",
       "ExpressionAttributeNames": {
-        "#SENDER_CONTACT_ID": "SENDER_CONTACT_ID",
-        "#RECEIVER_CONTACT_ID": "RECEIVER_CONTACT_ID",
+        "#SENDER_ID": "SENDER_ID",
+        "#RECEIVER_ID": "RECEIVER_ID",
       },
       "ExpressionAttributeValues": {
-        ":sender_contact_id": sender_contact_id,
-        ":receiver_contact_id": receiver_contact_id,
+        ":sender_id": sender_id,
+        ":receiver_id": receiver_id,
       }
     }
     docClient.query(params, function(err, data) {
