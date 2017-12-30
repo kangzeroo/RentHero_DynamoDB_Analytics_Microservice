@@ -4,6 +4,7 @@ const Test = require('./routes/test_routes')
 const Analytics = require('./routes/analytics_routes')
 const Help = require('./routes/help_routes')
 const Storyline = require('./routes/storyline_routes')
+const Tours = require('./routes/tour_routes')
 const UserQueries = require('./routes/Postgres_Leasing/Queries/UserQueries')
 
 // bodyParser attempts to parse any request into JSON format
@@ -32,6 +33,7 @@ module.exports = function(app){
 	app.post('/get_user_preferences_history', [json_encoding, JWT_Check, originCheck], Storyline.get_user_preferences_history)
 	app.post('/get_user_images_history', [json_encoding, JWT_Check, originCheck], Storyline.get_user_images_history)
 	app.post('/get_user_amenities_history', [json_encoding, JWT_Check, originCheck], Storyline.get_user_amenities_history)
+	app.post('/get_user_chat_history', [json_encoding, JWT_Check, originCheck], Storyline.get_user_chat_history)
 
 	// User queries
 	app.get('/get_all_users', [json_encoding, JWT_Check, originCheck], UserQueries.get_all_users)
@@ -41,4 +43,7 @@ module.exports = function(app){
 	app.post('/get_specific_user_by_first_name', [json_encoding, JWT_Check, originCheck], UserQueries.get_specific_user_by_first_name)
 	app.post('/get_specific_user_by_last_name', [json_encoding, JWT_Check, originCheck], UserQueries.get_specific_user_by_last_name)
 	app.post('/get_specific_user_by_full_name', [json_encoding, JWT_Check, originCheck], UserQueries.get_specific_user_by_full_name)
+
+	// chat thread for tours
+	app.post('/get_chat_thread', [json_encoding, JWT_Check, originCheck], Tours.get_chat_thread)
 }
