@@ -17,8 +17,7 @@ const communicationsHistoryTableParams = {
         { AttributeName: "RECEIVER_CONTACT_ID", AttributeType: "S" },     // a phone, email, fb messenger id (of the receiver)
         { AttributeName: "DATE", AttributeType: "N" },
         { AttributeName: "ACTION", AttributeType: "S" },
-        { AttributeName: "SENDER_ID", AttributeType: "S" },
-        { AttributeName: "RECEIVER_ID", AttributeType: "S" },
+        { AttributeName: "COMMUNICATION_ID", AttributeType: "S" },
     ],
     ProvisionedThroughput: {
         ReadCapacityUnits: 1,
@@ -63,9 +62,9 @@ const communicationsHistoryTableParams = {
       },
       {
         // USE CASE: ALLOWS ME TO SEE ALL INTEL OF A SPECIFIC ACTION, GROUPED BY USERS. EG: SHOW ME ALL PRICE ADJUSTMENTS, AND NOW I CAN GROUP USER POPULATIONS INTO PRICE RANGES.
-        IndexName: 'By_RECEIVER_ID', /* required */
+        IndexName: 'By_RECEIVER_CONTACT_ID', /* required */
         KeySchema: [ /* required */
-          {AttributeName: 'RECEIVER_ID', KeyType: 'HASH'},
+          {AttributeName: 'RECEIVER_CONTACT_ID', KeyType: 'HASH'},
           {AttributeName: 'DATE', KeyType: 'RANGE'}
         ],
         Projection: { /* required */
@@ -78,9 +77,9 @@ const communicationsHistoryTableParams = {
       },
       {
         // USE CASE: ALLOWS ME TO SEE ALL INTEL OF A SPECIFIC ACTION, GROUPED BY USERS. EG: SHOW ME ALL PRICE ADJUSTMENTS, AND NOW I CAN GROUP USER POPULATIONS INTO PRICE RANGES.
-        IndexName: 'By_SENDER_ID', /* required */
+        IndexName: 'By_SENDER_CONTACT_ID', /* required */
         KeySchema: [ /* required */
-          {AttributeName: 'SENDER_ID', KeyType: 'HASH'},
+          {AttributeName: 'SENDER_CONTACT_ID', KeyType: 'HASH'},
           {AttributeName: 'DATE', KeyType: 'RANGE'}
         ],
         Projection: { /* required */
@@ -103,6 +102,21 @@ const communicationsHistoryTableParams = {
         },
         ProvisionedThroughput: { /* required */
           ReadCapacityUnits: 1, /* required */
+          WriteCapacityUnits: 5 /* required */
+        }
+      },
+      {
+        // USE CASE: ALLOWS ME TO SEE ALL INTEL OF A SPECIFIC ACTION, GROUPED BY USERS. EG: SHOW ME ALL PRICE ADJUSTMENTS, AND NOW I CAN GROUP USER POPULATIONS INTO PRICE RANGES.
+        IndexName: 'By_COMMUNICATION_ID', /* required */
+        KeySchema: [ /* required */
+          {AttributeName: 'COMMUNICATION_ID', KeyType: 'HASH'},
+          {AttributeName: 'DATE', KeyType: 'RANGE'}
+        ],
+        Projection: { /* required */
+          ProjectionType: 'ALL'
+        },
+        ProvisionedThroughput: { /* required */
+          ReadCapacityUnits: 5, /* required */
           WriteCapacityUnits: 5 /* required */
         }
       }
