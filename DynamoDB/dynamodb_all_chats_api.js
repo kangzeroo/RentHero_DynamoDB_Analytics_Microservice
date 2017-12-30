@@ -30,7 +30,6 @@ exports.get_all_chats_for_tenant = function(tenant_id) {
 }
 
 
-
 const getAllMessagesSendByTenant = (tenant_id) => {
   const p = new Promise((res, rej) => {
     const params = {
