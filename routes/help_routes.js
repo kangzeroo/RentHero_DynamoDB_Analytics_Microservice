@@ -1,6 +1,6 @@
 const Promise = require('bluebird')
 const { promisify } = Promise
-const pool = require('../credentials/db_connect')
+const pool = require('./Postgres_Leasing/db_connect')
 const uuid = require('uuid')
 
 // to run a query we just pass it to the pool
