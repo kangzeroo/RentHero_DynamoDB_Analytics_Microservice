@@ -74,17 +74,17 @@ const unixDateSince = (numDays) => {
 }
 
 const determineUniqueVisitors = (Items) => {
-    const uniques = []
-    Items.forEach((it) => {
-      let exists = false
-      uniques.forEach((u) => {
-        if (u === it.USER_ID) {
-          exists = true
-        }
-      })
-      if (!exists) {
-        uniques.push(it.USER_ID)
+  const uniques = []
+  Items.forEach((it) => {
+    let exists = false
+    uniques.forEach((u) => {
+      if (u === it.USER_ID) {
+        exists = true
       }
     })
-    return uniques.length
-  }
+    if (!exists) {
+      uniques.push(it.USER_ID)
+    }
+  })
+  return uniques.length
+}

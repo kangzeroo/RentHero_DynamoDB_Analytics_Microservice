@@ -3,6 +3,7 @@ const retrieve_user_suite_browsing_history = require('../Storyline/user_browsing
 const retrieve_user_preferences_history = require('../Storyline/user_browsing_history').retrieve_user_preferences_history
 const retrieve_user_images_history = require('../Storyline/user_browsing_history').retrieve_user_images_history
 const retrieve_user_amenities_history = require('../Storyline/user_browsing_history').retrieve_user_amenities_history
+const get_all_chats_for_tenant = require('../DynamoDB/dynamodb_all_chats_api').get_all_chats_for_tenant
 
 // POST /get_user_building_browsing_history
 exports.get_user_building_browsing_history = function(req, res, next){
@@ -70,6 +71,20 @@ exports.get_user_amenities_history = function(req, res, next){
     console.log(err)
     res.send(500).send({
       message: 'Failed to retrieve user amenity browsing history'
+    })
+  })
+}
+
+// POST /get_user_chat_history
+exports.get_user_chat_history = function(req, res, next){
+  const tenant_id = req.body.tenant_id
+  get_all_chats_for_tenant(tenant_id).then((data) => {
+    console.log(data)
+    res.json(data)
+  }).catch((err) => {
+    console.log(err)
+    res.send(500).send({
+      message: 'Failed to retrieve user chat history'
     })
   })
 }

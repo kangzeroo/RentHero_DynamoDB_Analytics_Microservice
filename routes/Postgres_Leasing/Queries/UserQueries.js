@@ -39,6 +39,7 @@ exports.get_all_users = function(req, res, next){
     return return_rows(data)
   })
   .catch((error) => {
+    console.log(error)
       res.status(500).send('Failed to get Users')
   })
 }
