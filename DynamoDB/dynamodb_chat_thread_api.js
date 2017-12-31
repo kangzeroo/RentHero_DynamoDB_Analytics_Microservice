@@ -3,6 +3,7 @@ const AWS = require('aws-sdk')
 const aws_config = require('../credentials/aws_config')
 const dynaDoc = require("dynamodb-doc")
 const COMMUNICATIONS_HISTORY = require('./schema/dynamodb_tablenames').COMMUNICATIONS_HISTORY
+const TOUR_HINTS = require('./schema/dynamodb_tablenames').TOUR_HINTS
 AWS.config.update(aws_config)
 
 const dynamodb = new AWS.DynamoDB({
@@ -83,6 +84,27 @@ const getMessagesFromReceiversPOV = (sender_id, receiver_id) => {
       }else{
         console.log(data)
         res(data)
+      }
+    })
+  })
+  return p
+}
+
+
+exports.verify_relevant_hints = function(hint){
+  const p = new Promise((res, rej) => {
+    hint.VERIFIED = true
+    const updatedHint = {
+      'TableName': TOUR_HINTS,
+      'Item': hint,
+    }
+    docClient.putItem(updatedHint, function(err, data) {
+      if (err){
+          console.log(JSON.stringify(err, null, 2));
+          rej()
+      }else{
+          console.log('HINT UPDATED!')
+          res('success')
       }
     })
   })
