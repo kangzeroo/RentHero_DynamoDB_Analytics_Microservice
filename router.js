@@ -6,6 +6,7 @@ const Help = require('./routes/help_routes')
 const Storyline = require('./routes/storyline_routes')
 const Tours = require('./routes/tour_routes')
 const UserQueries = require('./routes/Postgres_Leasing/Queries/UserQueries')
+const RentheroMessages = require('./routes/renthero_sms_routes')
 
 // bodyParser attempts to parse any request into JSON format
 const json_encoding = bodyParser.json({type:'*/*'})
@@ -46,5 +47,8 @@ module.exports = function(app){
 
 	// chat thread for tours
 	app.post('/get_chat_thread', [json_encoding, JWT_Check, originCheck], Tours.get_chat_thread)
-	app.post('/clear_relevant_hints', [json_encoding, JWT_Check, originCheck], Tours.clear_relevant_hints)
+  app.post('/clear_relevant_hints', [json_encoding, JWT_Check, originCheck], Tours.clear_relevant_hints)
+
+	// message thread for renthero
+	app.post('/get_all_renthero_sms', [json_encoding, JWT_Check, originCheck], RentheroMessages.get_all_renthero_sms)
 }
