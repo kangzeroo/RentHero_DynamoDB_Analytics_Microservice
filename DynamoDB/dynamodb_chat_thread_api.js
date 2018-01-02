@@ -29,8 +29,6 @@ exports.get_specific_chat_thread = function(sender_id, receiver_id) {
   return p
 }
 
-
-
 const getMessagesFromSendersPOV = (sender_id, receiver_id) => {
   const p = new Promise((res, rej) => {
     const params = {
