@@ -47,7 +47,7 @@ module.exports = function(app){
 	app.post('/get_specific_user_by_full_name', [json_encoding, JWT_Check, originCheck], UserQueries.get_specific_user_by_full_name)
 
 	// chat thread for tours
-	app.post('/get_chat_thread', [json_encoding, JWT_Check], Tours.get_chat_thread)
+	app.post('/get_chat_thread', [json_encoding, JWT_Check, originCheck], Tours.get_chat_thread)
   app.post('/clear_relevant_hints', [json_encoding, JWT_Check, originCheck], Tours.clear_relevant_hints)
 
 	// message thread for renthero
