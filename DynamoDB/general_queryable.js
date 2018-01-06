@@ -14,24 +14,22 @@ const docClient = new dynaDoc.DynamoDB(dynamodb)
 
 exports.query_dynamodb = function(params) {
   /*
-    example: {
-    	"params": {
-          "TableName": "Building_Interactions_Intel",
-          "KeyConditionExpression": "#BUILDING_ID = :building_id",
-          "IndexName": "By_Local_UserId",
-          "FilterExpression": "#ACTION = :action1 AND #DATE > :date",
-          "ExpressionAttributeNames": {
-            "#BUILDING_ID": "BUILDING_ID",
-            "#ACTION": "ACTION",
-            "#DATE": "DATE"
-          },
-          "ExpressionAttributeValues": {
-            ":building_id": "d2daa19f-128f-4043-af84-c1baa970ab81",
-            ":action1": "BUILDING_PAGE_LOADED",
-            ":date": 1512940693
-          }
+  	"params": {
+        "TableName": "Building_Interactions_Intel",
+        "KeyConditionExpression": "#BUILDING_ID = :building_id",
+        "IndexName": "By_Local_UserId",
+        "FilterExpression": "#ACTION = :action1 AND #DATE > :date",
+        "ExpressionAttributeNames": {
+          "#BUILDING_ID": "BUILDING_ID",
+          "#ACTION": "ACTION",
+          "#DATE": "DATE"
+        },
+        "ExpressionAttributeValues": {
+          ":building_id": "d2daa19f-128f-4043-af84-c1baa970ab81",
+          ":action1": "BUILDING_PAGE_LOADED",
+          ":date": 1512940693
         }
-    }
+      }
   */
   const p = new Promise((res, rej) => {
     let Items = []
@@ -84,21 +82,19 @@ exports.query_dynamodb = function(params) {
 
 exports.scan_dynamodb = function(params) {
   /*
-    example {
-    	"params": {
-          "TableName": "Building_Interactions_Intel",
-          "IndexName": "By_Local_UserId",
-          "FilterExpression": "#ACTION = :action1 AND #DATE > :date",
-          "ExpressionAttributeNames": {
-            "#ACTION": "ACTION",
-            "#DATE": "DATE"
-          },
-          "ExpressionAttributeValues": {
-            ":action1": "BUILDING_PAGE_LOADED",
-            ":date": 1512940693
-          }
+  	"params": {
+        "TableName": "Building_Interactions_Intel",
+        "IndexName": "By_Local_UserId",
+        "FilterExpression": "#ACTION = :action1 AND #DATE > :date",
+        "ExpressionAttributeNames": {
+          "#ACTION": "ACTION",
+          "#DATE": "DATE"
+        },
+        "ExpressionAttributeValues": {
+          ":action1": "BUILDING_PAGE_LOADED",
+          ":date": 1512940693
         }
-    }
+      }
   */
   const p = new Promise((res, rej) => {
     let Items = []
