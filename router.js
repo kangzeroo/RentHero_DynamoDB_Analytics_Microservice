@@ -7,6 +7,7 @@ const Storyline = require('./routes/storyline_routes')
 const Tours = require('./routes/tour_routes')
 const UserQueries = require('./routes/Postgres_Leasing/Queries/UserQueries')
 const RentheroMessages = require('./routes/renthero_sms_routes')
+const MappingQueries = require('./routes/Postgres_Leasing/Queries/MappingQueries')
 
 // bodyParser attempts to parse any request into JSON format
 const json_encoding = bodyParser.json({type:'*/*'})
@@ -51,4 +52,9 @@ module.exports = function(app){
 
 	// message thread for renthero
 	app.post('/get_all_renthero_sms', [json_encoding, JWT_Check, originCheck], RentheroMessages.get_all_renthero_sms)
+
+	// SMS mappings
+	app.post('/landlord_get_all_sms_matches', [json_encoding, JWT_Check, originCheck], MappingQueries.get_all_sms_matches)
+	app.post('/landlord_get_all_email_matches', [json_encoding, JWT_Check, originCheck], MappingQueries.get_all_email_matches)
+	app.post('/landlord_delete_sms_match', [json_encoding, JWT_Check, originCheck], MappingQueries.delete_sms_match)
 }
