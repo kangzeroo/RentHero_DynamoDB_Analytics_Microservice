@@ -8,6 +8,8 @@ const Tours = require('./routes/tour_routes')
 const UserQueries = require('./routes/Postgres_Leasing/Queries/UserQueries')
 const RentheroMessages = require('./routes/renthero_sms_routes')
 const MappingQueries = require('./routes/Postgres_Leasing/Queries/MappingQueries')
+const InquiryQuery = require('./routes/Postgres_Leasing/Queries/InquiryQuery')
+const TourQuery = require('./routes/Postgres_Leasing/Queries/TourQuery')
 
 // bodyParser attempts to parse any request into JSON format
 const json_encoding = bodyParser.json({type:'*/*'})
@@ -57,4 +59,10 @@ module.exports = function(app){
 	app.post('/landlord_get_all_sms_matches', [json_encoding, JWT_Check, originCheck], MappingQueries.get_all_sms_matches)
 	app.post('/landlord_get_all_email_matches', [json_encoding, JWT_Check, originCheck], MappingQueries.get_all_email_matches)
 	app.post('/landlord_delete_sms_match', [json_encoding, JWT_Check, originCheck], MappingQueries.delete_sms_match)
+
+	// Inquiry Routes
+	app.post('/delete_tenant_inquiry_by_id', [json_encoding, JWT_Check, originCheck], InquiryQuery.delete_tenant_inquiry_by_id)
+
+	// Tour Routes
+	app.post('/delete_tour_by_id', [json_encoding, JWT_Check, originCheck], TourQuery.delete_tour_by_id)
 }
