@@ -6,6 +6,7 @@ exports.get_all_renthero_sms = (req, res, next) => {
   get_renthero_sms().then((data) => {
     res.json(data)
   }).catch((err) => {
+    console.log(err)
     res.status(500).send(err)
   })
 }
