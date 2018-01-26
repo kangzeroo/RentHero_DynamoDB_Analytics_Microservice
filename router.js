@@ -54,6 +54,7 @@ module.exports = function(app){
 
 	// message thread for renthero
 	app.post('/get_all_renthero_sms', [json_encoding, JWT_Check, originCheck], RentheroMessages.get_all_renthero_sms)
+	app.post('/query_renthero_messages', [json_encoding], RentheroMessages.query_renthero_messages)
 
 	// SMS mappings
 	app.post('/landlord_get_all_sms_matches', [json_encoding, JWT_Check, originCheck], MappingQueries.get_all_sms_matches)
