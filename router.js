@@ -10,7 +10,7 @@ const RentheroMessages = require('./routes/renthero_sms_routes')
 const MappingQueries = require('./routes/Postgres_Leasing/Queries/MappingQueries')
 const InquiryQuery = require('./routes/Postgres_Leasing/Queries/InquiryQuery')
 const TourQuery = require('./routes/Postgres_Leasing/Queries/TourQuery')
-
+const DynamoNotes = require('./DynamoDB/dynamodb_chat_thread_api')
 // bodyParser attempts to parse any request into JSON format
 const json_encoding = bodyParser.json({type:'*/*'})
 const originCheck = require('./auth/originCheck').originCheck
@@ -38,6 +38,7 @@ module.exports = function(app){
 	app.post('/get_user_images_history', [json_encoding, JWT_Check, originCheck], Storyline.get_user_images_history)
 	app.post('/get_user_amenities_history', [json_encoding, JWT_Check, originCheck], Storyline.get_user_amenities_history)
 	app.post('/get_user_chat_history', [json_encoding, JWT_Check, originCheck], Storyline.get_user_chat_history)
+	app.post('/get_recent_notes', [json_encoding], DynamoNotes.get_recent_notes)
 
 	// User queries
 	app.get('/get_all_users', [json_encoding, JWT_Check, originCheck], UserQueries.get_all_users)
