@@ -9,3 +9,5 @@ exports.ORCHESTRA_ACTIVITY = 'Orchestra_Activity'
 
 exports.COMMUNICATIONS_HISTORY = 'Communication_Logs'
 exports.TOUR_HINTS = 'Tour_Hints_Parsed'
+exports.RENTHERO_NOTES = 'RentHero_Notes'
+exports.BILLING_RECORDS = 'Billing_Records'
