@@ -32,7 +32,7 @@ exports.get_building_views = function(building_id) {
         // ":action3": 'SUBMITTED_PHONE_CALL_BACK_FORM',
         // ":action4": 'APPLY_NOW_BUTTON_BUILDING',
         // ":action5": 'CALL_LANDLORD_BUTTON',
-        ":date": unixDateSince(30)
+        ":date": unixDateSince(20)
       },
       "ProjectionExpression": "#ACTION, #DATE, #USER_ID"
     }
