@@ -22,7 +22,16 @@ const log_through = data => {
 
 exports.get_all_users = function(req, res, next){
 
-  const get_all_users = `SELECT * FROM tenant`
+  const get_all_users = `SELECT a.tenant_id, a.first_name, a.last_name,
+                                a.email, a.phone, a.thumbnail, a.fb_user_id,
+                                a.google_user_id, a.created_at,
+                                b.tenant_short_id, b.legal_name, b.date_of_birth,
+                                b.gender, b.handled
+                           FROM tenant a
+                           INNER JOIN tenant_details b
+                           ON a.tenant_id = b.tenant_id
+
+                        `
 
   const return_rows = (rows) => {
     res.json(rows)
