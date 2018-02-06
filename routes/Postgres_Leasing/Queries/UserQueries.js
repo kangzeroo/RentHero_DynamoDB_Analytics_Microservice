@@ -28,7 +28,7 @@ exports.get_all_users = function(req, res, next){
                                 b.tenant_short_id, b.legal_name, b.date_of_birth,
                                 b.gender, b.handled
                            FROM tenant a
-                           INNER JOIN tenant_details b
+                           LEFT OUTER JOIN tenant_details b
                            ON a.tenant_id = b.tenant_id
 
                         `
