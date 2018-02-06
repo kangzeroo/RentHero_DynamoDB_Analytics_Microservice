@@ -10,7 +10,7 @@ const RentheroMessages = require('./routes/renthero_sms_routes')
 const MappingQueries = require('./routes/Postgres_Leasing/Queries/MappingQueries')
 const InquiryQuery = require('./routes/Postgres_Leasing/Queries/InquiryQuery')
 const TourQuery = require('./routes/Postgres_Leasing/Queries/TourQuery')
-
+const DynamoNotes = require('./DynamoDB/dynamodb_chat_thread_api')
 // bodyParser attempts to parse any request into JSON format
 const json_encoding = bodyParser.json({type:'*/*'})
 const originCheck = require('./auth/originCheck').originCheck
@@ -38,6 +38,7 @@ module.exports = function(app){
 	app.post('/get_user_images_history', [json_encoding, JWT_Check, originCheck], Storyline.get_user_images_history)
 	app.post('/get_user_amenities_history', [json_encoding, JWT_Check, originCheck], Storyline.get_user_amenities_history)
 	app.post('/get_user_chat_history', [json_encoding, JWT_Check, originCheck], Storyline.get_user_chat_history)
+	app.post('/get_recent_notes', [json_encoding], DynamoNotes.get_recent_notes)
 
 	// User queries
 	app.get('/get_all_users', [json_encoding, JWT_Check, originCheck], UserQueries.get_all_users)
@@ -54,6 +55,7 @@ module.exports = function(app){
 
 	// message thread for renthero
 	app.post('/get_all_renthero_sms', [json_encoding, JWT_Check, originCheck], RentheroMessages.get_all_renthero_sms)
+	app.post('/query_renthero_messages', [json_encoding], RentheroMessages.query_renthero_messages)
 
 	// SMS mappings
 	app.post('/landlord_get_all_sms_matches', [json_encoding, JWT_Check, originCheck], MappingQueries.get_all_sms_matches)

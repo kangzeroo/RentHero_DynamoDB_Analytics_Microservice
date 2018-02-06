@@ -8,6 +8,7 @@ const cors = require('cors')
 const app = express()
 
 // Database setup
+// const createTables = require('./DynamoDB/schema/billing_records/billing_records_table').createTables
 
 // App setup
 // morgan and bodyParser are middlewares. any incoming requests will be passed through each
