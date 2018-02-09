@@ -26,7 +26,7 @@ exports.get_all_users = function(req, res, next){
                                 a.email, a.phone, a.thumbnail, a.fb_user_id,
                                 a.google_user_id, a.created_at,
                                 b.tenant_short_id, b.legal_name, b.date_of_birth,
-                                b.gender, b.handled
+                                b.gender, b.handled, b.follow_up
                            FROM tenant a
                            LEFT OUTER JOIN tenant_details b
                            ON a.tenant_id = b.tenant_id
