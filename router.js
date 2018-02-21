@@ -12,7 +12,7 @@ const InquiryQuery = require('./routes/Postgres_Leasing/Queries/InquiryQuery')
 const TourQuery = require('./routes/Postgres_Leasing/Queries/TourQuery')
 const DynamoNotes = require('./DynamoDB/dynamodb_chat_thread_api')
 // bodyParser attempts to parse any request into JSON format
-const json_encoding = bodyParser.json({type:'*/*'})
+const json_encoding = bodyParser.json({type:'*/*', limit: '10mb'})
 const originCheck = require('./auth/originCheck').originCheck
 const JWT_Check = require('./auth/JWT_Check').JWT_Check
 // bodyParser attempts to parse any request into GraphQL format
